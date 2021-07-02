@@ -1,0 +1,47 @@
+{
+
+    "manifest_version": 2,
+    "name": "SEVA",
+    "version": "2.0",
+    "description": "An extension to provide summarized transcript of a YouTube Subtitle eligible Video.",
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+    "background": {
+        "persistent": false,
+        "scripts": [
+            "background_script.js"
+        ]    
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval';object-src 'self'",
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "webNavigation",
+        "storage",
+        "declarativeContent",
+        "contextMenus",
+        "https://ajax.googleapis.com/"
+    ],
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.youtube.com/*",
+                "http://youtu.be/*"
+            ],
+            "run_at": "document_start",
+            "all_frames": true,
+            "js": [
+                "main.js",
+                "jquery-3.5.0.slim.min.js"
+            ]
+        }
+    ],
+
+    "icons": {
+        "128": "icon.png"
+    }
+
+}
